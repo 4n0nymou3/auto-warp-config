@@ -4,8 +4,8 @@
 //support-url: https://t.me/BXAMbot
 //profile-web-page-url: https://github.com/4n0nymou3
 
-warp://162.159.195.119:859/?ifp=50-100&ifps=50-100&ifpd=3-6&ifpm=m4&&detour=warp://162.159.195.119:859/?ifp=50-100&ifps=50-100&ifpd=3-6&ifpm=m4#Anon-WoW-IPv4🇩🇪-1
+warp://188.114.98.224:2408/?ifp=50-100&ifps=50-100&ifpd=3-6&ifpm=m4&&detour=warp://188.114.98.224:2408/?ifp=50-100&ifps=50-100&ifpd=3-6&ifpm=m4#Anon-WoW-IPv4🇩🇪-1
 
-warp://188.114.97.67:1074/?ifp=50-100&ifps=50-100&ifpd=3-6&ifpm=m4&&detour=warp://188.114.97.67:1074/?ifp=50-100&ifps=50-100&ifpd=3-6&ifpm=m4#Anon-WoW-IPv4🇩🇪-2
+warp://162.159.195.108:1180/?ifp=50-100&ifps=50-100&ifpd=3-6&ifpm=m4&&detour=warp://162.159.195.108:1180/?ifp=50-100&ifps=50-100&ifpd=3-6&ifpm=m4#Anon-WoW-IPv4🇩🇪-2
 
-warp://[2606:4700:d1::61de:a81a:4a28:2364]:1074/?ifp=50-100&ifps=50-100&ifpd=3-6&ifpm=m4&&detour=warp://[2606:4700:d1::61de:a81a:4a28:2364]:1074/?ifp=50-100&ifps=50-100&ifpd=3-6&ifpm=m4#Anon-WoW-IPv6🇩🇪-3
+warp://[2606:4700:d0::c6c2:99f4:eadf:d89b]:859/?ifp=50-100&ifps=50-100&ifpd=3-6&ifpm=m4&&detour=warp://[2606:4700:d0::c6c2:99f4:eadf:d89b]:859/?ifp=50-100&ifps=50-100&ifpd=3-6&ifpm=m4#Anon-WoW-IPv6🇩🇪-3
