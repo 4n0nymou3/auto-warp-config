@@ -1,16 +1,35 @@
 {
   "dns": {
     "hosts": {
-      "geosite:category-porn": "127.0.0.1",
-      "domain:googleapis.cn": "googleapis.com"
+      "domain:googleapis.cn": [
+        "googleapis.com"
+      ],
+      "geosite:category-ads-all": [
+        "127.0.0.1"
+      ],
+      "geosite:category-ads-ir": [
+        "127.0.0.1"
+      ]
     },
     "servers": [
-      "https://8.8.8.8/dns-query"
-    ]
+      "fakedns",
+      "1.1.1.1",
+      "1.0.0.1"
+    ],
+    "tag": "dns"
   },
+  "fakedns": [
+    {
+      "ipPool": "198.18.0.0/15",
+      "poolSize": 32768
+    },
+    {
+      "ipPool": "fc00::/18",
+      "poolSize": 32768
+    }
+  ],
   "inbounds": [
     {
-      "listen": "127.0.0.1",
       "port": 10808,
       "protocol": "socks",
       "settings": {
@@ -21,20 +40,41 @@
       "sniffing": {
         "destOverride": [
           "http",
-          "tls"
+          "tls",
+          "fakedns"
         ],
         "enabled": true
       },
-      "tag": "socks"
+      "tag": "socks-in"
     },
     {
-      "listen": "127.0.0.1",
       "port": 10809,
       "protocol": "http",
       "settings": {
+        "auth": "noauth",
+        "udp": true,
         "userLevel": 8
       },
-      "tag": "http"
+      "sniffing": {
+        "destOverride": [
+          "http",
+          "tls",
+          "fakedns"
+        ],
+        "enabled": true
+      },
+      "tag": "http-in"
+    },
+    {
+      "listen": "127.0.0.1",
+      "port": 10853,
+      "protocol": "dokodemo-door",
+      "settings": {
+        "address": "1.1.1.1",
+        "network": "tcp,udp",
+        "port": 53
+      },
+      "tag": "dns-in"
     }
   ],
   "log": {
@@ -42,23 +82,17 @@
   },
   "outbounds": [
     {
-      "mux": {
-        "concurrency": -1,
-        "enabled": false,
-        "xudpConcurrency": 8,
-        "xudpProxyUDP443": ""
-      },
       "protocol": "wireguard",
       "settings": {
         "address": [
-          "172.16.0.2/32"
+          "172.16.0.2/32",
+          "2606:4700:110:8023:c690:f128:78b6:bc6a/128"
         ],
-        "mtu": 1330,
+        "mtu": 1280,
         "peers": [
           {
-            "endpoint": "[2606:4700:d1::77ae:8849:a0fc:5a07]:859",
-            "keepAlive": 10,
-            "preSharedKey": "",
+            "endpoint": "162.159.192.115:987",
+            "keepAlive": 5,
             "publicKey": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo="
           }
         ],
@@ -68,12 +102,16 @@
           210
         ],
         "secretKey": "YHH7Sp+NtFzqVaPbnQrqmEXKXk0rM1q9BnXyGIPrWEE=",
-        "wnoise": "m4",
-        "wnoisecount": "25-50",
-        "wnoisedelay": "2-6",
-        "wpayloadsize": "50-100"
+        "wnoise": "quic",
+        "wnoisecount": "10-15",
+        "wnoisedelay": "1",
+        "wpayloadsize": "5-10"
       },
       "tag": "proxy"
+    },
+    {
+      "protocol": "dns",
+      "tag": "dns-out"
     },
     {
       "protocol": "freedom",
@@ -104,41 +142,37 @@
       "statsOutboundDownlink": true
     }
   },
-  "remarks": "wire",
+  "remarks": "main.am",
   "routing": {
     "domainStrategy": "IPIfNonMatch",
     "rules": [
       {
-        "domain": [
-          "domain:ir",
-          "geosite:category-ir",
-          "geosite:private"
+        "inboundTag": [
+          "dns-in"
         ],
-        "outboundTag": "direct",
+        "outboundTag": "dns-out",
         "type": "field"
       },
       {
-        "ip": [
-          "geoip:ir",
-          "geoip:private"
+        "inboundTag": [
+          "socks-in",
+          "http-in"
         ],
-        "outboundTag": "direct",
+        "outboundTag": "dns-out",
+        "port": "53",
         "type": "field"
       },
       {
         "domain": [
-          "geosite:category-porn"
+          "geosite:category-ads-all",
+          "geosite:category-ads-ir"
         ],
         "outboundTag": "block",
         "type": "field"
       },
       {
-        "ip": [
-          "10.10.34.34",
-          "10.10.34.35",
-          "10.10.34.36"
-        ],
-        "outboundTag": "block",
+        "network": "tcp,udp",
+        "outboundTag": "proxy",
         "type": "field"
       }
     ]
