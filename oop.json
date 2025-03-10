@@ -56,7 +56,7 @@
         "mtu": 1330,
         "peers": [
           {
-            "endpoint": "[2606:4700:d0::1a26:2355:60d9:357]:1387",
+            "endpoint": "[2606:4700:d1::77ae:8849:a0fc:5a07]:859",
             "keepAlive": 10,
             "preSharedKey": "",
             "publicKey": "bmXOC+F1FxEMF9dyiK2H5/1SUtzH0JuVo51h2wPfgyo="
