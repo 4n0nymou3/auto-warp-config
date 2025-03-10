@@ -41,5 +41,5 @@ def update_config_file(config_file):
         print("خطا: ساختار فایل JSON مطابق انتظار نیست.")
 
 if __name__ == "__main__":
-    config_file = 'oop.txt'  # نام فایل JSON شما
+    config_file = 'oop.json'  # نام فایل JSON شما
     update_config_file(config_file)
