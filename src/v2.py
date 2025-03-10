@@ -23,7 +23,7 @@ def update_config_file(config_file):
         ipv6 = random.choice(ips['ipv6'])
 
         # انتخاب تصادفی از IPهای IPv4 و IPv6
-        new_endpoint = random.choice(ipv4_list + [ipv6])
+        new_endpoint = random.choice(ipv4_list)
 
         # تغییر endpoint در فایل JSON
         data['outbounds'][0]['settings']['peers'][0]['endpoint'] = new_endpoint
