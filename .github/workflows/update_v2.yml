@@ -27,7 +27,7 @@ jobs:
         pip install requests
     
     - name: Update configs
-      run: python src/main.py
+      run: python src/v2.py
     
     - name: Commit and push if changed
       run: |
